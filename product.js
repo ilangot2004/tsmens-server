@@ -3,7 +3,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 const multer = require("multer");
 
 const router = express.Router();
-const mongoUrl = "mongodb://127.0.0.1:27017";
+const mongoUrl = process.env.MONGO_URI;
 const dbName = "product";
 
 // Configure multer for in-memory storage

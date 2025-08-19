@@ -17,7 +17,7 @@ app.use("/api", productRoutes);
 
 // Root route → fetch products and return them
 app.get("/", async (req, res) => {
-  const mongoUrl = "mongodb://127.0.0.1:27017";
+const mongoUrl = process.env.MONGO_URI;
   const dbName = "product";
 
   let client;
