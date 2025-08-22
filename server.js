@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const productRoutes = require("./product");
@@ -7,16 +6,13 @@ const { MongoClient } = require("mongodb");
 const app = express();
 const port = 3001;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Mount /api routes
 app.use("/api", productRoutes);
 
-// Root route → fetch products and return them
-app.get("/", async (req, res) => {
+=app.get("/", async (req, res) => {
 const mongoUrl = process.env.MONGO_URI;
   const dbName = "product";
 
@@ -25,7 +21,7 @@ const mongoUrl = process.env.MONGO_URI;
     client = new MongoClient(mongoUrl);
     await client.connect();
     const db = client.db(dbName);
-    const collection = db.collection("pant"); // default collection
+    const collection = db.collection("pant");
     const products = await collection.find({}).toArray();
     res.json(products);
   } catch (err) {
